@@ -24,6 +24,7 @@ https://talkingaboutme.tistory.com/entry/ML-TIP-Logistic-Regression-Feature-impo
 treatment -> 5:5
 survive ->편향
 
+>> f1 score 확인
 >> smote 사용
 
 
