@@ -18,6 +18,7 @@
 
 https://scikit-learn.org/stable/auto_examples/ensemble/plot_forest_importances.html
 https://talkingaboutme.tistory.com/entry/ML-TIP-Logistic-Regression-Feature-importance
+https://stackoverflow.com/questions/34052115/how-to-find-the-importance-of-the-features-for-a-logistic-regression-model
 
 -------------------------------------------------------------------------------------
 
@@ -29,7 +30,7 @@ survive ->편향
 
 
 데이터 불균형 참고
-https://stackoverflow.com/questions/34052115/how-to-find-the-importance-of-the-features-for-a-logistic-regression-model
+https://john-analyst.medium.com/smote%EB%A1%9C-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%88%EA%B7%A0%ED%98%95-%ED%95%B4%EA%B2%B0%ED%95%98%EA%B8%B0-5ab674ef0b32
 https://www.analyticsvidhya.com/blog/2020/10/overcoming-class-imbalance-using-smote-techniques/
 https://machinelearningmastery.com/multi-class-imbalanced-classification/
 
