@@ -11,6 +11,7 @@ from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, ExtraTr
 from sklearn.metrics import accuracy_score
 import lightgbm as lgb
 import random
+from IPython.display import display
 
 
 plt.rcParams["figure.figsize"] = (200,10)
@@ -147,7 +148,7 @@ def TestML(model,selected_genetic):
         Y_test = test_data['newlabel']
 
         model.fit(X_train, Y_train)
-        train_acc.append(np.round(model.score(X_train, Y_train) * 100, 10))
+        train_acc.append(np.round(model.score(X_train, Y_train), 10))
         
         Y_pred = model.predict(X_test)
         test_acc.append(np.round(accuracy_score(Y_test, Y_pred), 10))
@@ -238,7 +239,7 @@ for i in range(100):
     train_accuracy, test_accuracy = TestML(test_model1, test_genetic)
 
     if np.max(test_accuracy) >= 0.65 or np.min(test_accuracy) >= 0.565:
-        print('-----------------Over!-----------------', end='\n\n\n')
+        # print('-----------------Over!-----------------', end='\n\n\n')
         if np.max(test_accuracy) >= 0.65 and np.min(test_accuracy) >= 0.565:
             whatover = 'max&min'
         elif np.max(test_accuracy) >= 0.65:
@@ -262,9 +263,9 @@ kwargs = dict(alpha=0.3, bins=300)
 
 sorted_random_genetic_list = sort_genetic_table(random_genetic_list)
 ax.hist(sorted_random_genetic_list, **dict(alpha=0.3, bins=300), color='r', label='random genetic table')
-ax.hist(selected_genetic, **dict(alpha=1, bins=300), color='g', label='selected genetic table')
+#ax.hist(selected_genetic, **dict(alpha=1, bins=300), color='g', label='selected genetic table')
 ax.set(title='Frequency Histogram of Random genetic table', ylabel='Frequency')
-fig.savefig('Frequency Histogram of Random genetic table - Acc_100.png', dpi = 200)
+#fig.savefig('Frequency Histogram of Random genetic table - Acc_100.png', dpi = 200)
 plt.show()
 
 
@@ -288,7 +289,7 @@ for i in range(100):
     train_accuracy, test_accuracy = TestML(test_model2, test_genetic)
     
     if np.max(test_accuracy) >= 0.635:
-        print('-----------------Over!-----------------', end='\n\n\n')
+        # print('-----------------Over!-----------------', end='\n\n\n')
         over_genetic.append([test_genetic,np.max(test_accuracy)])
 
 #draw table
@@ -307,65 +308,8 @@ kwargs = dict(alpha=0.3, bins=300)
 
 sorted_random_genetic_list = sort_genetic_table(random_genetic_list)
 ax.hist(sorted_random_genetic_list, **dict(alpha=0.3, bins=300), color='r', label='random genetic table')
-ax.hist(selected_genetic, **dict(alpha=1, bins=300), color='g', label='selected genetic table')
+#ax.hist(selected_genetic, **dict(alpha=1, bins=300), color='g', label='selected genetic table')
 ax.set(title='Frequency Histogram of Random genetic table', ylabel='Frequency')
-fig.savefig('Frequency Histogram of Random genetic table - Acc_not_100.png', dpi = 200)
+#fig.savefig('Frequency Histogram of Random genetic table - Acc_not_100.png', dpi = 200)
 plt.show()
 
-'''
-###########################################
-
-ML Feature Selection Test - Genetic Top 10 x 3
-
-###########################################
-'''
-
-
-test_genetic = ['G238', 'G47', 'G290', 'G242', 'G162', 'G130', 'G65', 'G11', 'G300', 'G139']
-print('## ML로 뽑은 10개 유전자: ', test_genetic)
-
-model1_train, model1_test = TestML(test_model1, test_genetic)
-model2_train, model2_test = TestML(test_model2, test_genetic)
-
-
-#draw table
-model_train_results = np.array([[np.round(np.max(model1_train), 3), np.round(np.min(model1_train), 3)],
-                               [np.round(np.max(model1_test), 3),np.round(np.min(model1_test), 3)],
-                               [np.round(np.max(model2_train), 3),np.round(np.min(model2_train), 3)],
-                               [np.round(np.max(model2_test), 3),np.round(np.min(model2_test), 3)]])
-
-display(pd.DataFrame(model_train_results, columns=['Max', 'Min'],
-                     index=['RandomForest Train', 'RandomForest Test','LightGBM Train','LightGBM Test']))
-
-
-test_genetic = ['G238', 'G191', 'G242', 'G200', 'G130', 'G166', 'G124', 'G57', 'G263', 'G146']
-print('## ML로 뽑은 10개 유전자: ', test_genetic)
-
-model1_train, model1_test = TestML(test_model1, test_genetic)
-model2_train, model2_test = TestML(test_model2, test_genetic)
-
-
-#draw table
-model_train_results = np.array([[np.round(np.max(model1_train), 3), np.round(np.min(model1_train), 3)],
-                               [np.round(np.max(model1_test), 3),np.round(np.min(model1_test), 3)],
-                               [np.round(np.max(model2_train), 3),np.round(np.min(model2_train), 3)],
-                               [np.round(np.max(model2_test), 3),np.round(np.min(model2_test), 3)]])
-
-display(pd.DataFrame(model_train_results, columns=['Max', 'Min'],
-                     index=['RandomForest Train', 'RandomForest Test','LightGBM Train','LightGBM Test']))
-
-
-test_genetic = ['G200', 'G18', 'G75', 'G6', 'G112', 'G148', 'G284', 'G9', 'G221', 'G187']
-print('## ML로 뽑은 10개 유전자: ', test_genetic)
-
-model1_train, model1_test = TestML(test_model1, test_genetic)
-model2_train, model2_test = TestML(test_model2, test_genetic)
-
-#draw table
-model_train_results = np.array([[np.round(np.max(model1_train), 3), np.round(np.min(model1_train), 3)],
-                               [np.round(np.max(model1_test), 3),np.round(np.min(model1_test), 3)],
-                               [np.round(np.max(model2_train), 3),np.round(np.min(model2_train), 3)],
-                               [np.round(np.max(model2_test), 3),np.round(np.min(model2_test), 3)]])
-
-display(pd.DataFrame(model_train_results, columns=['Max', 'Min'],
-                     index=['RandomForest Train', 'RandomForest Test','LightGBM Train','LightGBM Test']))
