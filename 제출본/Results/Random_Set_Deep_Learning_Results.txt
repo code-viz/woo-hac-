@@ -1,0 +1,11 @@
+Best Total Accuracy
+Train Accuracy : 63.79375
+Test Accuracy : 64.675
+
+Best Loss Accuracy
+Train Accuracy : 51.9
+Test Accuracy : 54.55
+
+Best Test Accuracy
+Train Accuracy : 62.69375
+Test Accuracy : 65.6
